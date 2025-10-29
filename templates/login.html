@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="panel narrow">
+  <h2 class="title">ON (Login)</h2>
+  {% if error %}<div class="alert">{{ error }}</div>{% endif %}
+  <form method="POST" class="form">
+    <label>Email</label>
+    <input type="email" name="email" required>
+    <label>Password</label>
+    <input type="password" name="password" required>
+    <button class="btn primary" type="submit">Login</button>
+  </form>
+  <p class="muted">No account? <a href="{{ url_for('register') }}">Register</a></p>
+</section>
+{% endblock %}

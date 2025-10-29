@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="panel">
+  <h1 class="title">Answer Checker</h1>
+  <p class="subtitle">Enter your own math problems — I'll check your answers and keep score for 10 tries.</p>
+  <a class="btn primary" href="{{ url_for('answer_checker') }}">▶ Play</a>
+</section>
+{% endblock %}

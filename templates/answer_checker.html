@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="panel">
+  <h2 class="title">Answer Checker</h2>
+
+  <div class="display">
+    {% if feedback %}
+      <div class="led">{{ feedback }}</div>
+    {% else %}
+      <div class="led">=</div>
+    {% endif %}
+  </div>
+
+  {% if not done %}
+  <form method="POST" class="form">
+    <label>Enter a math problem:</label>
+    <input type="text" name="problem" placeholder="e.g. 12 ÷ 5" value="{{ problem_prefill or '' }}" required>
+
+    <label>Your answer:</label>
+    <input type="text" name="user_answer" placeholder="e.g. 2.4  or  2 r 2" value="{{ user_answer_prefill or '' }}" required>
+
+    <div class="row">
+      <button class="btn primary" type="submit">= (Check)</button>
+    </div>
+  </form>
+
+  <div class="scorebar">
+    <span>Score: {{ score or 0 }} / {{ count or 0 }}</span>
+    <span>Round ends at 10 tries</span>
+  </div>
+  {% endif %}
+
+  {% if done %}
+    <div class="final">
+      <div class="big">Final Score: {{ score }}/10</div>
+      <a class="btn primary" href="{{ url_for('answer_checker') }}">Play Again</a>
+    </div>
+  {% endif %}
+</section>
+{% endblock %}

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dataman</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">DATAMAN</div>
+    <nav>
+      {% if session.get('user') %}
+        <span class="user">Hello, {{ session['user']['email'] }}</span>
+        <a class="btn" href="{{ url_for('logout') }}">OFF (Logout)</a>
+      {% endif %}
+    </nav>
+  </header>
+  <main class="container">
+    {% block content %}{% endblock %}
+  </main>
+  <footer class="footer">
+    <small>Answer Checker • Flask + Supabase</small>
+  </footer>
+</body>
+</html>
