@@ -1,10 +1,15 @@
 from typing import Optional
 from config import supabase
 
-def register_user(email: str, password: str):
+def register_user(email: str, password: str, name: str):
     if supabase is None:
-        raise RuntimeError("Supabase is not configured. Set SUPABASE_URL and SUPABASE_KEY in .env")
-    return supabase.auth.sign_up({"email": email, "password": password})
+        raise RuntimeError("Supabase not configured.")
+    # Supabase supports user_metadata for extra fields like name
+    return supabase.auth.sign_up({
+        "email": email,
+        "password": password,
+        "options": {"data": {"name": name}}
+    })
 
 def login_user(email: str, password: str):
     if supabase is None:

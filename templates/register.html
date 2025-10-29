@@ -3,13 +3,23 @@
 <section class="panel narrow">
   <h2 class="title">Register</h2>
   {% if error %}<div class="alert">{{ error }}</div>{% endif %}
+
   <form method="POST" class="form">
+    <label>Full Name</label>
+    <input type="text" name="name" placeholder="e.g. Alex Johnson" required>
+
     <label>Email</label>
     <input type="email" name="email" required>
+
     <label>Password</label>
     <input type="password" name="password" required>
+
+    <label>Confirm Password</label>
+    <input type="password" name="confirm_password" required>
+
     <button class="btn primary" type="submit">Sign Up</button>
   </form>
+
   <p class="muted">Already have an account? <a href="{{ url_for('login') }}">Login</a></p>
 </section>
 {% endblock %}

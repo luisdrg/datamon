@@ -17,14 +17,23 @@ def index():
 def register():
     error = None
     if request.method == 'POST':
+        name = request.form['name']
         email = request.form['email']
         password = request.form['password']
-        try:
-            res = register_user(email, password)
-            # If no error raised, go to login
-            return redirect(url_for('login'))
-        except Exception as e:
-            error = "Registration failed. " + str(e)
+        confirm = request.form['confirm_password']
+
+        if password != confirm:
+            error = "Passwords do not match."
+        else:
+            try:
+                res = register_user(email, password, name)
+                if res.user:
+                    return redirect(url_for('login'))
+                else:
+                    error = "Registration failed. Try again."
+            except Exception as e:
+                error = f"Registration failed: {e}"
+
     return render_template('register.html', error=error)
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -36,8 +45,11 @@ def login():
         try:
             res = login_user(email, password)
             if res and res.user:
-                session['user'] = {'id': res.user.id, 'email': res.user.email}
-                # Reset counters on fresh login
+                session['user'] = {
+                    'id': res.user.id,
+                    'email': res.user.email,
+                    'name': res.user.user_metadata.get('name') if res.user.user_metadata else None
+                }
                 session['score'] = 0
                 session['count'] = 0
                 return redirect(url_for('index'))
@@ -46,6 +58,7 @@ def login():
         except Exception as e:
             error = "Login failed. " + str(e)
     return render_template('login.html', error=error)
+
 
 @app.route('/logout')
 def logout():
