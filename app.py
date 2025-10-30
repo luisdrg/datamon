@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 from config import SECRET_KEY, supabase
-from utils.games import check_answer
+from utils.answer_checker import play_answer_checker
 from utils.supabase_helpers import register_user, login_user, save_score
 
 app = Flask(__name__)
@@ -80,7 +80,7 @@ def answer_checker():
     if request.method == 'POST':
         problem = request.form['problem']
         user_answer = request.form['user_answer']
-        is_correct, correct_display = check_answer(problem, user_answer)
+        is_correct, correct_display = play_answer_checker(problem, user_answer)
 
         # Keep score: after each submission, count increments; 10 attempts per round
         session['score'] = session.get('score', 0)
