@@ -3,6 +3,9 @@ from config import SECRET_KEY, supabase
 from utils.answer_checker import play_answer_checker
 from utils.supabase_helpers import register_user, login_user, save_score
 
+# Constants
+ANSWER_CHECKER_TOTAL_PROBLEMS = 10
+
 app = Flask(__name__)
 app.secret_key = SECRET_KEY
 
@@ -93,7 +96,7 @@ def answer_checker():
             feedback = f"❌ EEE! Correct answer was {correct_display}"
 
         # After 10 problems, save and show summary
-        if session['count'] >= 10:
+        if session['count'] >= ANSWER_CHECKER_TOTAL_PROBLEMS:
             if 'user' in session and session['user'].get('id'):
                 try:
                     save_score(session['user']['id'], session['score'])
