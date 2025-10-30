@@ -1,31 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dataman</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Datamon</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
-
 <body>
   <header class="topbar">
-    <div class="brand">DATAMAN</div>
-    <nav>
+    <div class="left-nav">
+      <div class="brand">
+        <a href="{{ url_for('index') }}">DATAMON</a>
+      </div>
+
+      <input type="checkbox" id="nav-toggle" class="nav-toggle">
+      <label for="nav-toggle" class="nav-toggle-label">
+        <span></span>
+      </label>
+
+      <nav class="nav-links">
+        {% if session.get('user') %}
+          <a href="{{ url_for('answer_checker') }}">Answer Checker</a>
+          <a href="{{ url_for('memory_bank') }}">Memory Bank</a>
+          <a href="{{ url_for('number_guesser') }}">Number Guesser</a>
+        {% endif %}
+      </nav>
+    </div>
+
+    <div class="right-nav">
       {% if session.get('user') %}
-      <span class="user">
-        Hello, {{ session['user']['name'] or session['user']['email'] }}
-      </span>
-      <a class="btn" href="{{ url_for('logout') }}">OFF (Logout)</a>
+        <span class="user">Hi, {{ session['user']['name'] or session['user']['email'] }}</span>
+        <a class="btn small" href="{{ url_for('logout') }}">OFF</a>
+      {% else %}
+        <a href="{{ url_for('login') }}">Login</a>
+        <a href="{{ url_for('register') }}">Register</a>
       {% endif %}
-    </nav>
+    </div>
   </header>
+
   <main class="container">
     {% block content %}{% endblock %}
   </main>
+
   <footer class="footer">
-    <small>Answer Checker • Flask + Supabase</small>
+    <small>Datamon • Flask + Supabase</small>
   </footer>
 </body>
-
 </html>

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="panel">
+  <h2 class="title">Memory Bank (Coming Soon)</h2>
+  <p>This feature will let you store up to 10 math problems you struggle with, and practice them later.</p>
+  <div class="muted">
+    In the next sprint, you’ll:
+    <ul>
+      <li>Add a “Save Problem” button on Answer Checker</li>
+      <li>Store it in the database (memory_bank table)</li>
+      <li>Use “GO” to practice stored problems</li>
+    </ul>
+  </div>
+  <a class="btn primary" href="{{ url_for('index') }}">Return Home</a>
+</section>
+{% endblock %}

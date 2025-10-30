@@ -1,8 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
 <section class="panel">
-  <h1 class="title">Answer Checker</h1>
-  <p class="subtitle">Enter your own math problems — I'll check your answers and keep score for 10 tries.</p>
-  <a class="btn primary" href="{{ url_for('answer_checker') }}">▶ Play</a>
+  <h1 class="title">Datamon Games</h1>
+  <p class="subtitle">Choose one of the games below:</p>
+
+  <div style="display:flex;flex-direction:column;gap:10px;max-width:300px;margin:0 auto;">
+    <a class="btn primary" href="{{ url_for('answer_checker') }}">▶ Answer Checker</a>
+    <a class="btn primary" href="{{ url_for('memory_bank') }}">💾 Memory Bank</a>
+    <a class="btn primary" href="{{ url_for('number_guesser') }}">🔢 Number Guesser</a>
+  </div>
 </section>
 {% endblock %}

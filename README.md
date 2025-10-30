@@ -1,6 +1,6 @@
-# Dataman: Answer Checker (Flask + Supabase)
+# Datamon: Answer Checker (Flask + Supabase)
 
-A minimal web remake of the classic Dataman "Answer Checker".
+A minimal web remake of the classic Datamon "Answer Checker".
 - Users enter **their own math problem** and an **answer guess**.
 - App checks correctness, gives "✅ Correct!" or "❌ EEE!"
 - After 10 problems, the score is saved to Supabase.

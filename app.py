@@ -117,5 +117,23 @@ def answer_checker():
                            score=session.get('score', 0),
                            count=session.get('count', 0))
 
+# ---------- Memory Bank ----------
+@app.route('/memory_bank', methods=['GET', 'POST'])
+def memory_bank():
+    if 'user' not in session:
+        return redirect(url_for('login'))
+    # Stub: just a placeholder page for now
+    return render_template('memory_bank.html')
+
+
+# ---------- Number Guesser ----------
+@app.route('/number_guesser', methods=['GET', 'POST'])
+def number_guesser():
+    if 'user' not in session:
+        return redirect(url_for('login'))
+    # Stub: placeholder
+    return render_template('number_guesser.html')
+
+
 if __name__ == '__main__':
     app.run(debug=True)

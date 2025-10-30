@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="panel">
+  <h2 class="title">Number Guesser (Coming Soon)</h2>
+  <p>This game will pick a secret number between 9 and 100. You’ll guess, and it will tell you if the number is higher or lower until you find it.</p>
+  <div class="muted">
+    Future logic plan:
+    <ul>
+      <li>Generate random number (store in session)</li>
+      <li>Compare guesses until correct</li>
+      <li>Track number of tries and show score</li>
+    </ul>
+  </div>
+  <a class="btn primary" href="{{ url_for('index') }}">Return Home</a>
+</section>
+{% endblock %}
